@@ -3,9 +3,8 @@ import requests
 from datetime import datetime
 import pytz
 
-API_KEY = "your_api_key_here"
+API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
-
 def get_weather(city):
     params = {
         "q": city,
