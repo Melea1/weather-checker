@@ -1,4 +1,6 @@
 import requests
+from datetime import datetime
+import pytz
 
 API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -22,6 +24,21 @@ def get_weather(city):
         humidity = data["main"]["humidity"]
         wind_speed = data["wind"]["speed"]
 
+        # Get location coordinates
+        lat = data["coord"]["lat"]
+        lon = data["coord"]["lon"]
+
+        # Get timezone using lat/lon
+        timezone_url = f"http://api.timezonedb.com/v2.1/get-time-zone?key=YOUR_TIMEZONEDB_API_KEY&format=json&by=position&lat={lat}&lng={lon}"
+        timezone_response = requests.get(timezone_url)
+
+        if timezone_response.status_code == 200:
+            timezone_data = timezone_response.json()
+            tz_name = timezone_data["zoneName"]
+            city_time = datetime.now(pytz.timezone(tz_name))
+            print(f"📅 Local date and time in {city}: {city_time.strftime('%A, %d %B %Y, %H:%M')}")
+        else:
+            print("⚠️ Unable to get timezone data.")
         # Print the results nicely
         print(f"Weather in {city}:")
         print(f"🌡️ Temperature: {temperature}°C")
