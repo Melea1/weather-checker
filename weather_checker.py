@@ -8,7 +8,7 @@ def get_weather(city):
         "q": city,
         "appid": API_KEY,
         "units": "metric",   # temperature in Celsius
-        "lang": "fr"         # weather description in French
+        "lang": "en"
     }
 
     response = requests.get(BASE_URL, params=params)
