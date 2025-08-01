@@ -29,7 +29,7 @@ def get_weather(city):
         lon = data["coord"]["lon"]
 
         # Get timezone using lat/lon
-        timezone_url = f"http://api.timezonedb.com/v2.1/get-time-zone?key=YOUR_TIMEZONEDB_API_KEY&format=json&by=position&lat={lat}&lng={lon}"
+        timezone_url = f"http://api.timezonedb.com/v2.1/get-time-zone?key=UT4YLFNZR5HE&format=json&by=position&lat={lat}&lng={lon}"
         timezone_response = requests.get(timezone_url)
 
         if timezone_response.status_code == 200:
