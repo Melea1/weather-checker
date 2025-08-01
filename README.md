@@ -1,11 +1,21 @@
 # weather-checker
 
-This is a simple Python app that lets you check the current weather in any city using the OpenWeatherMap API.  
-Because sometimes... you just wanna know if you need an umbrella ☔ or your sunglasses 😎.
+Welcome to the Weather Checker!  
+A simple Python app that fetches real-time weather data for any city in the world 🌍  
+Perfect for learning how to work with APIs, JSON, and Python basics.
 
-## 🔧 How to use
+## 🔧 Features
 
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/Melea1/weather-checker.git
-   cd weather-checker
+- Enter any city name and get:
+  - 🌡️ Temperature (in Celsius)
+  - 🌥️ Weather description (in French 🇫🇷)
+  - 💧 Humidity
+  - 💨 Wind speed
+
+## 🚀 How to Run
+
+1. **Clone this repo:**
+
+```bash
+git clone https://github.com/Melea1/weather-checker.git
+cd weather-checker
