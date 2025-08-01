@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 
 API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
@@ -10,7 +10,7 @@ def get_weather(city):
         "q": city,
         "appid": API_KEY,
         "units": "metric",
-        "lang": "fr"
+        "lang": "en"
     }
     response = requests.get(BASE_URL, params=params)
     if response.status_code == 200:
@@ -30,7 +30,7 @@ def get_weather(city):
 
 def get_local_time(timezone_offset):
     utc_time = datetime.utcnow()
-    local_time = utc_time + pytz.timedelta(seconds=timezone_offset)
+    local_time = utc_time + timedelta(seconds=timezone_offset)
     return local_time.strftime("%A, %B %d, %Y, %H:%M")
 
 # Streamlit app
