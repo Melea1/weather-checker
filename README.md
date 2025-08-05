@@ -26,6 +26,7 @@ To run this app locally, follow these steps:
 ```bash
 git clone https://github.com/Melea1/weather-checker.git
 cd weather-checker
+
 2. Install dependencies using Poetry (recommended)
 
 poetry install
