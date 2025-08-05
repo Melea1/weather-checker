@@ -31,15 +31,13 @@ cd weather-checker
 streamlit run main.py
 
 3. Install dependencies
+
 Using Poetry (recommended):
 
-bash
-Copier
 poetry install
+
 Or using pip:
 
-bash
-Copier
 pip install -r requirements.txt
 
 
