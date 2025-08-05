@@ -26,12 +26,7 @@ To run this app locally, follow these steps:
 git clone https://github.com/Melea1/weather-checker.git
 cd weather-checker
 
-### 2. Run the Streamlit app
-
-```bash
-streamlit run main.py
-
-3. Install dependencies
+2. Install dependencies
 
 Using Poetry (recommended):
 
@@ -41,6 +36,9 @@ Or using pip:
 
 pip install -r requirements.txt
 
+3. Run the Streamlit app
+
+streamlit run main.py
 
 ### 📁 Project Structure
 
