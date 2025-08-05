@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "weather-checker"
 version = "0.1.0"
-description = "A simple weather checker app using Streamlit"
+description = "A weather checker app using Streamlit"
 authors = ["Melea1<melea.ohayon@mail.huji.ac.il>"]
 readme = "README.md"
 packages = [{ include = "app" }] 
