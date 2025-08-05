@@ -28,6 +28,7 @@ cd weather-checker
 
 ### 2. Run the Streamlit app
 
+```bash
 streamlit run main.py
 
 3. Install dependencies
