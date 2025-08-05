@@ -2,8 +2,11 @@ import streamlit as st
 import requests
 from datetime import datetime, timedelta
 import pytz
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
+API_KEY = os.getenv("WEATHERֹ_API_KEY")
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 def get_weather(city):
     params = {
