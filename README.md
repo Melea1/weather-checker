@@ -2,8 +2,7 @@
 
 Welcome to **Weather Checker**, a simple Python app that provides real-time weather information for any city in the world 🌍
 
-This project was built using Python, the OpenWeatherMap API, and Streamlit. It was a great opportunity to deepen my understanding of APIs, JSON data, and how to build interactive user interfaces with Streamlit.
-
+This project was built using Python, the OpenWeatherMap API, and Streamlit. 
 ---
 
 ## 🔧 Features
