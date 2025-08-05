@@ -8,7 +8,7 @@ Perfect for learning how to work with APIs, JSON, and Python basics.
 
 - Enter any city name and get:
   - 🌡️ Temperature (in Celsius)
-  - 🌥️ Weather description (in French 🇫🇷)
+  - 🌥️ Weather description 
   - 💧 Humidity
   - 💨 Wind speed
 
