@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "weather-checker"
+version = "0.1.0"
+description = "A simple weather checker app using Streamlit"
+authors = ["Melea1<melea.ohayon@mail.huji.ac.il>"]
+readme = "README.md"
+packages = [{ include = "app" }] 
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+streamlit = "^1.27.0"
+requests = "^2.32.4"
+pytz = "^2025.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
