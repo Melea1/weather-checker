@@ -14,7 +14,6 @@ This project was built using Python, the OpenWeatherMap API, and Streamlit. It w
 - 💧 **Humidity level**  
 - 💨 **Wind speed**  
 - 🕒 **Local time** in the city  
-- 🌄 **Weather icon**
 
 ---
 
