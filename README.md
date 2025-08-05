@@ -30,8 +30,20 @@ cd weather-checker
 
 streamlit run main.py
 
+3. Install dependencies
+Using Poetry (recommended):
 
-### 3. 📁 Project Structure
+bash
+Copier
+poetry install
+Or using pip:
+
+bash
+Copier
+pip install -r requirements.txt
+
+
+### 📁 Project Structure
 
 weather-checker/
 │
