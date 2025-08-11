@@ -2,4 +2,4 @@ streamlit
 requests
 pytz
 folium
-streamlit folium
+streamlit-folium
