@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import pytz
 from streamlit_folium import folium_static
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 # Define translations for the UI elements
@@ -107,6 +107,7 @@ if language in ['he', 'ar']:
         .css-1d391kg { text-align: right; }
         .stButton button { direction: rtl; }
         .stTextInput input { direction: rtl; }
+        .stMarkdown p { direction: rtl; }
         </style>
         """,
         unsafe_allow_html=True
