@@ -66,9 +66,16 @@ if city:
             local_time = utc_time + timedelta(seconds=timezone_offset)
             return local_time.strftime("%A, %B %d, %Y, %H:%M")
 
+        # Function to get the user's local time using pytz
+        def get_user_local_time():
+            # Using pytz to get the user's local timezone
+            user_timezone = pytz.timezone("Asia/Jerusalem")  # Change this to user's timezone if needed
+            local_time = datetime.now(user_timezone)
+            return local_time.strftime("%A, %B %d, %Y, %H:%M")
         # Display local time
         st.write(f"🕒 Local time: {get_local_time(weather['timezone'])}")
-
+        # Display user's local time
+        st.write(f"🕰️ Your local time: {get_user_local_time()}")
         # Display map
         display_map(weather['lat'], weather['lon'])
     else:
