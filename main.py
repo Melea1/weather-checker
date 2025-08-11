@@ -1,9 +1,11 @@
 import streamlit as st
 import requests
+import folium
 from datetime import datetime, timedelta
 import pytz
+from streamlit_folium import folium_static
 
-API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
+API_KEY = "YOUR_API_KEY"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 
@@ -13,7 +15,7 @@ def get_weather(city):
         "q": city,
         "appid": API_KEY,
         "units": "metric",
-        "lang": "en"  # Language in English
+        "lang": "en"
     }
     response = requests.get(BASE_URL, params=params)
     if response.status_code == 200:
@@ -32,18 +34,11 @@ def get_weather(city):
         return None
 
 
-# Function to get local time based on timezone offset
-def get_local_time(timezone_offset):
-    utc_time = datetime.utcnow()
-    local_time = utc_time + timedelta(seconds=timezone_offset)
-    return local_time.strftime("%A, %B %d, %Y, %H:%M")
-
-
-# Function to get user's local time using pytz
-def get_user_local_time():
-    user_timezone = pytz.timezone("Asia/Jerusalem")  # Replace with the user's timezone
-    local_time = datetime.now(user_timezone)
-    return local_time.strftime("%A, %B %d, %Y, %H:%M")
+# Function to display the map with Folium
+def display_map(lat, lon):
+    m = folium.Map(location=[lat, lon], zoom_start=10)
+    folium.Marker([lat, lon], popup="Requested Location").add_to(m)
+    folium_static(m)
 
 
 # Streamlit app
@@ -59,13 +54,15 @@ if city:
         st.write(f"🌥️ Conditions: {weather['description'].capitalize()}")
         st.write(f"💧 Humidity: {weather['humidity']}%")
         st.write(f"💨 Wind: {weather['wind']} m/s")
-        st.write(f"🕒 Weather time: {get_local_time(weather['timezone'])}")
 
-        # User's local time
-        st.write(f"🕰️ Your local time: {get_user_local_time()}")
-
-        # Displaying the weather icon
+        # Display weather icon
         icon_url = f"http://openweathermap.org/img/wn/{weather['icon']}@2x.png"
         st.image(icon_url)
+
+        # Display local time
+        st.write(f"🕒 Local time: {get_local_time(weather['timezone'])}")
+
+        # Display map
+        display_map(weather['lat'], weather['lon'])
     else:
         st.error("Could not retrieve weather data. Please check the city name.")
