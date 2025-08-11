@@ -3,7 +3,6 @@ import requests
 import folium
 from datetime import datetime, timedelta
 import pytz
-import matplotlib.pyplot as plt
 from streamlit_folium import folium_static
 
 API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
@@ -142,6 +141,7 @@ def set_background(weather_condition):
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
+                color: white;
             }
             </style>
             """,
@@ -156,6 +156,7 @@ def set_background(weather_condition):
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
+                color: white;
             }
             </style>
             """,
@@ -169,6 +170,7 @@ def set_background(weather_condition):
                 background-color: #f0f8ff;  /* Light sky blue for default */
                 background-size: cover;
                 background-position: center;
+                color: black;
             }
             </style>
             """,
