@@ -59,6 +59,13 @@ if city:
         icon_url = f"http://openweathermap.org/img/wn/{weather['icon']}@2x.png"
         st.image(icon_url)
 
+
+        # Function to get the local time based on timezone offset
+        def get_local_time(timezone_offset):
+            utc_time = datetime.utcnow()
+            local_time = utc_time + timedelta(seconds=timezone_offset)
+            return local_time.strftime("%A, %B %d, %Y, %H:%M")
+
         # Display local time
         st.write(f"🕒 Local time: {get_local_time(weather['timezone'])}")
 
