@@ -131,6 +131,38 @@ def get_forecast(city, lang, unit_param):
         return None
 
 
+# Function to apply a dynamic background based on weather condition
+def set_background(weather_condition):
+    if 'clear' in weather_condition.lower():
+        st.markdown(
+            """
+            <style>
+            .stApp {
+                background-image: url('https://example.com/sunny-beach.jpg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+    elif 'rain' in weather_condition.lower():
+        st.markdown(
+            """
+            <style>
+            .stApp {
+                background-image: url('https://example.com/rainy-day.jpg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
+
 # Streamlit app
 language = st.selectbox("Choose your language", ["en", "fr", "he", "ar"])  # Languages selection
 
@@ -165,6 +197,7 @@ city = st.text_input(ui_text['enter_city'])
 if city:
     weather = get_weather(city, language, unit_param)  # Pass selected language to API
     if weather:
+        set_background(weather['description'])  # Set background dynamically
         st.subheader(f"{ui_text['weather_in']} {city.title()}")
         st.write(ui_text['temperature'].format(weather['temp']))
         st.write(ui_text['conditions'].format(weather['description'].capitalize()))
