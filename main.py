@@ -138,7 +138,7 @@ def set_background(weather_condition):
             """
             <style>
             .stApp {
-                background-image: url('https://example.com/sunny-beach.jpg');
+                background-image: url('https://images.unsplash.com/photo-1556742033-cbd6c5b2c5f4');  /* Sunny Beach */
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
@@ -152,10 +152,23 @@ def set_background(weather_condition):
             """
             <style>
             .stApp {
-                background-image: url('https://example.com/rainy-day.jpg');
+                background-image: url('https://images.unsplash.com/photo-1484642281401-45f249e63f24');  /* Rainy Day */
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+    else:
+        st.markdown(
+            """
+            <style>
+            .stApp {
+                background-color: #f0f8ff;  /* Light sky blue for default */
+                background-size: cover;
+                background-position: center;
             }
             </style>
             """,
