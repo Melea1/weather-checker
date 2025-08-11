@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import pytz
 from streamlit_folium import folium_static
 
-API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
+API_KEY = "YOUR_API_KEY"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 # Define translations for the UI elements
@@ -18,8 +18,8 @@ translations = {
         'conditions': '🌥️ Conditions: {}',
         'humidity': '💧 Humidity: {}%',
         'wind': '💨 Wind: {} m/s',
-        'weather_location_time': '🕒 Weather location time: ',
-        'your_local_time': '🕰️ Your local time: ',
+        'weather_location_time': '🕒 Weather location time: {}',
+        'your_local_time': '🕰️ Your local time: {}',
         'error': 'Could not retrieve weather data. Please check the city name.',
     },
     'fr': {
@@ -30,20 +30,20 @@ translations = {
         'conditions': '🌥️ Conditions : {}',
         'humidity': '💧 Humidité : {}%',
         'wind': '💨 Vent : {} m/s',
-        'weather_location_time': '🕒 Heure locale de la météo : ',
-        'your_local_time': '🕰️ Votre heure locale : ',
+        'weather_location_time': '🕒 Heure locale de la météo : {}',
+        'your_local_time': '🕰️ Votre heure locale : {}',
         'error': 'Impossible de récupérer les données météo. Veuillez vérifier le nom de la ville.',
     },
     'he': {
         'title': '☁️ אפליקציית בדיקת מזג האוויר',
         'enter_city': 'הזן שם עיר',
         'weather_in': 'מזג האוויר ב',
-        'temperature': '🌡️ טמפרטורה: {}',
+        'temperature': '🌡️ טמפרטורה: {}°C',
         'conditions': '🌥️ תנאים: {}',
         'humidity': '💧 לחות: {}%',
         'wind': '💨 רוח: {} מ/ש',
-        'weather_location_time': '🕒 שעה מקומית לאזור מזג האוויר: ',
-        'your_local_time': '🕰️ השעה המקומית שלך: ',
+        'weather_location_time': '🕒 שעה מקומית לאזור מזג האוויר: {}',
+        'your_local_time': '🕰️ השעה המקומית שלך: {}',
         'error': 'לא ניתן להשיג נתוני מזג אוויר. אנא בדוק את שם העיר.',
     },
     'ar': {
@@ -54,8 +54,8 @@ translations = {
         'conditions': '🌥️ الظروف: {}',
         'humidity': '💧 الرطوبة: {}%',
         'wind': '💨 الرياح: {} م/ث',
-        'weather_location_time': '🕒 الوقت المحلي لموقع الطقس: ',
-        'your_local_time': '🕰️ وقتك المحلي: ',
+        'weather_location_time': '🕒 الوقت المحلي لموقع الطقس: {}',
+        'your_local_time': '🕰️ وقتك المحلي: {}',
         'error': 'تعذر الحصول على بيانات الطقس. يرجى التحقق من اسم المدينة.',
     }
 }
@@ -98,6 +98,19 @@ language = st.selectbox("Choose your language", ["en", "fr", "he", "ar"])  # Lan
 
 # Get the translations based on selected language
 ui_text = translations[language]
+
+# Apply CSS for RTL languages (Hebrew and Arabic)
+if language in ['he', 'ar']:
+    st.markdown(
+        """
+        <style>
+        .css-1d391kg { text-align: right; }
+        .stButton button { direction: rtl; }
+        .stTextInput input { direction: rtl; }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 # Display the title based on selected language
 st.title(ui_text['title'])
