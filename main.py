@@ -59,6 +59,11 @@ if city:
         icon_url = f"http://openweathermap.org/img/wn/{weather['icon']}@2x.png"
         st.image(icon_url)
 
+        # Language selection by user
+        language = st.selectbox(
+            "Choose your language",
+            ["en", "fr", "es", "de", "it", "ru", "pt", "ja", "zh", "ar"]  # List of supported languages
+        )
 
         # Function to get the local time based on timezone offset
         def get_local_time(timezone_offset):
