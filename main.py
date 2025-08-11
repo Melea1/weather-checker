@@ -104,10 +104,11 @@ if language in ['he', 'ar']:
     st.markdown(
         """
         <style>
-        .css-1d391kg { text-align: right; }
+        .css-1d391kg { text-align: right; direction: rtl; }
         .stButton button { direction: rtl; }
         .stTextInput input { direction: rtl; }
         .stMarkdown p { direction: rtl; }
+        .stImage img { direction: rtl; }
         </style>
         """,
         unsafe_allow_html=True
@@ -136,7 +137,7 @@ if city:
         def get_local_time(timezone_offset):
             utc_time = datetime.utcnow()
             local_time = utc_time + timedelta(seconds=timezone_offset)
-            return local_time.strftime("%A, %B %d, %Y, %H:%M")
+            return local_time.strftime("%A, %B %d, %Y %H:%M")  # Removed parentheses around the time
 
 
         # Function to get the user's local time using pytz
@@ -144,7 +145,7 @@ if city:
             # Using pytz to get the user's local timezone
             user_timezone = pytz.timezone("Asia/Jerusalem")  # Change this to user's timezone if needed
             local_time = datetime.now(user_timezone)
-            return local_time.strftime("%A, %B %d, %Y, %H:%M")
+            return local_time.strftime("%A, %B %d, %Y %H:%M")  # Removed parentheses around the time
 
 
         # Display local time for the city
