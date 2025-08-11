@@ -3,6 +3,7 @@ import requests
 import folium
 from datetime import datetime, timedelta
 import pytz
+import matplotlib.pyplot as plt
 from streamlit_folium import folium_static
 
 API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
@@ -130,54 +131,6 @@ def get_forecast(city, lang, unit_param):
         return None
 
 
-# Function to apply a dynamic background based on weather condition
-def set_background(weather_condition):
-    if 'clear' in weather_condition.lower():
-        st.markdown(
-            """
-            <style>
-            .stApp {
-                background-image: url('https://images.unsplash.com/photo-1556742033-cbd6c5b2c5f4');  /* Sunny Beach */
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                color: white;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    elif 'rain' in weather_condition.lower():
-        st.markdown(
-            """
-            <style>
-            .stApp {
-                background-image: url('https://images.unsplash.com/photo-1484642281401-45f249e63f24');  /* Rainy Day */
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                color: white;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-    else:
-        st.markdown(
-            """
-            <style>
-            .stApp {
-                background-color: #f0f8ff;  /* Light sky blue for default */
-                background-size: cover;
-                background-position: center;
-                color: black;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-
 # Streamlit app
 language = st.selectbox("Choose your language", ["en", "fr", "he", "ar"])  # Languages selection
 
@@ -212,7 +165,6 @@ city = st.text_input(ui_text['enter_city'])
 if city:
     weather = get_weather(city, language, unit_param)  # Pass selected language to API
     if weather:
-        set_background(weather['description'])  # Set background dynamically
         st.subheader(f"{ui_text['weather_in']} {city.title()}")
         st.write(ui_text['temperature'].format(weather['temp']))
         st.write(ui_text['conditions'].format(weather['description'].capitalize()))
