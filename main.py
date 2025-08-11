@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import pytz
 from streamlit_folium import folium_static
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 
