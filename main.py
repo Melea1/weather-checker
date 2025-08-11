@@ -8,6 +8,58 @@ from streamlit_folium import folium_static
 API_KEY = "0191241afe2bcfeb9b49134dbbc2976c"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
+# Define translations for the UI elements
+translations = {
+    'en': {
+        'title': '☁️ Weather Checker App',
+        'enter_city': 'Enter a city name',
+        'weather_in': 'Weather in',
+        'temperature': '🌡️ Temperature: {}°C',
+        'conditions': '🌥️ Conditions: {}',
+        'humidity': '💧 Humidity: {}%',
+        'wind': '💨 Wind: {} m/s',
+        'weather_location_time': '🕒 Weather location time: {}',
+        'your_local_time': '🕰️ Your local time: {}',
+        'error': 'Could not retrieve weather data. Please check the city name.',
+    },
+    'fr': {
+        'title': '☁️ Application de vérification météo',
+        'enter_city': 'Entrez un nom de ville',
+        'weather_in': 'Météo à',
+        'temperature': '🌡️ Température : {}°C',
+        'conditions': '🌥️ Conditions : {}',
+        'humidity': '💧 Humidité : {}%',
+        'wind': '💨 Vent : {} m/s',
+        'weather_location_time': '🕒 Heure locale de la météo : {}',
+        'your_local_time': '🕰️ Votre heure locale : {}',
+        'error': 'Impossible de récupérer les données météo. Veuillez vérifier le nom de la ville.',
+    },
+    'he': {
+        'title': '☁️ אפליקציית בדיקת מזג האוויר',
+        'enter_city': 'הזן שם עיר',
+        'weather_in': 'מזג האוויר ב',
+        'temperature': '🌡️ טמפרטורה: {}°C',
+        'conditions': '🌥️ תנאים: {}',
+        'humidity': '💧 לחות: {}%',
+        'wind': '💨 רוח: {} מ/ש',
+        'weather_location_time': '🕒 שעה מקומית לאזור מזג האוויר: {}',
+        'your_local_time': '🕰️ השעה המקומית שלך: {}',
+        'error': 'לא ניתן להשיג נתוני מזג אוויר. אנא בדוק את שם העיר.',
+    },
+    'ar': {
+        'title': '☁️ تطبيق التحقق من الطقس',
+        'enter_city': 'أدخل اسم المدينة',
+        'weather_in': 'الطقس في',
+        'temperature': '🌡️ درجة الحرارة: {}°C',
+        'conditions': '🌥️ الظروف: {}',
+        'humidity': '💧 الرطوبة: {}%',
+        'wind': '💨 الرياح: {} م/ث',
+        'weather_location_time': '🕒 الوقت المحلي لموقع الطقس: {}',
+        'your_local_time': '🕰️ وقتك المحلي: {}',
+        'error': 'تعذر الحصول على بيانات الطقس. يرجى التحقق من اسم المدينة.',
+    }
+}
+
 
 # Function to get weather data
 def get_weather(city, lang):
@@ -15,7 +67,7 @@ def get_weather(city, lang):
         "q": city,
         "appid": API_KEY,
         "units": "metric",
-        "lang": lang  # Language selection parameter
+        "lang": lang  # Language selection for weather data
     }
     response = requests.get(BASE_URL, params=params)
     if response.status_code == 200:
@@ -42,24 +94,24 @@ def display_map(lat, lon):
 
 
 # Streamlit app
-st.title("☁️ Weather Checker App")
+language = st.selectbox("Choose your language", ["en", "fr", "he", "ar"])  # Languages selection
 
-# Language selection by user
-language = st.selectbox(
-    "Choose your language",
-    ["en", "fr", "es", "de", "it", "ru", "pt", "ja", "zh", "ar"]  # List of supported languages
-)
+# Get the translations based on selected language
+ui_text = translations[language]
 
-city = st.text_input("Enter a city name")
+# Display the title based on selected language
+st.title(ui_text['title'])
+
+city = st.text_input(ui_text['enter_city'])
 
 if city:
-    weather = get_weather(city, language)  # Pass the selected language to the API request
+    weather = get_weather(city, language)  # Pass selected language to API
     if weather:
-        st.subheader(f"Weather in {city.title()}")
-        st.write(f"🌡️ Temperature: {weather['temp']}°C")
-        st.write(f"🌥️ Conditions: {weather['description'].capitalize()}")
-        st.write(f"💧 Humidity: {weather['humidity']}%")
-        st.write(f"💨 Wind: {weather['wind']} m/s")
+        st.subheader(f"{ui_text['weather_in']} {city.title()}")
+        st.write(ui_text['temperature'].format(weather['temp']))
+        st.write(ui_text['conditions'].format(weather['description'].capitalize()))
+        st.write(ui_text['humidity'].format(weather['humidity']))
+        st.write(ui_text['wind'].format(weather['wind']))
 
         # Display weather icon
         icon_url = f"http://openweathermap.org/img/wn/{weather['icon']}@2x.png"
@@ -82,12 +134,12 @@ if city:
 
 
         # Display local time for the city
-        st.write(f"🕒 Weather location time: {get_local_time(weather['timezone'])}")
+        st.write(f"{ui_text['weather_location_time']} {get_local_time(weather['timezone'])}")
 
         # Display user's local time
-        st.write(f"🕰️ Your local time: {get_user_local_time()}")
+        st.write(f"{ui_text['your_local_time']} {get_user_local_time()}")
 
         # Display map for the city location
         display_map(weather['lat'], weather['lon'])
     else:
-        st.error("Could not retrieve weather data. Please check the city name.")
+        st.error(ui_text['error'])
